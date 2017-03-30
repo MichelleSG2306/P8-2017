@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
     Context context;
 
     ArrayList imgCards;
-    public static int [] images ={R.drawable.img_rejsekort, R.drawable.img_koerekort, R.drawable.img_sundhedskort,
-                                  R.drawable.img_creditcard, R.drawable.img_ungdomskort};
+    public static int [] images ={R.drawable.paint_rejsekort, R.drawable.paint_licence, R.drawable.paint_sundhedskort,
+                                  R.drawable.paint_bankcard, R.drawable.paint_ungdomskort};
     public static String [] prgmNameList={"Let Us C", "hejej","hehrej", "hehej", "jugjug"};
     @Override
 
@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         context=this;
-
         lv=(ListView) findViewById(R.id.listOfCards);
         lv.setAdapter(new CustomAdapter(this, prgmNameList, images));
 
