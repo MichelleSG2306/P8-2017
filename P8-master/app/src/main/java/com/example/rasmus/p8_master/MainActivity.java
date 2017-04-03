@@ -12,21 +12,17 @@ import android.widget.ListView;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
-    Context context;
 
-    ArrayList imgCards;
-    public static int [] images ={R.drawable.paint_rejsekort, R.drawable.paint_licence, R.drawable.paint_sundhedskort,
-                                  R.drawable.paint_bankcard, R.drawable.paint_ungdomskort};
-    public static String [] prgmNameList={"Let Us C", "hejej","hehrej", "hehej", "jugjug"};
+    public static int [] images ={R.drawable.rejsekort_f, R.drawable.ungdomskort_f, R.drawable.bankcard_f,
+                                  R.drawable.sundhedskort_f, R.drawable.driverslicence_f};
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        context=this;
         lv=(ListView) findViewById(R.id.listOfCards);
-        lv.setAdapter(new CustomAdapter(this, prgmNameList, images));
+        lv.setAdapter(new CustomAdapter(this, images));
 
     }
 
