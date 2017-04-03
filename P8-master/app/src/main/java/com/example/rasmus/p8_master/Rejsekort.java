@@ -1,11 +1,13 @@
 package com.example.rasmus.p8_master;
 
-import android.graphics.drawable.Drawable;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-/**
- * Created by Rasmus on 26-03-2017.
- */
+public class Rejsekort extends AppCompatActivity {
 
-public class Rejsekort extends Card {
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_rejsekort);
+    }
 }
