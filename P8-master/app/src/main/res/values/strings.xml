@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">P8-master</string>
+
+    <string name="bankcardLink">Link <a href="https://www.sparnord.dk/">https://www.sparnord.dk/</a></string>
+
+    <string name="ungdomskortLink">Link <a href="http://www.ungdomskort.dk/">http://www.ungdomskort.dk/</a></string>
+
+    <string name="rejsekortLink">Link <a href="https://www.rejsekort.dk/">https://www.rejsekort.dk//</a></string>
+
+    <string name="sundhedskortLink">Link <a href="https://www.borger.dk/sundhed-og-sygdom/Sygesikring-og-laegevalg/Nyt-sundhedskort">https://www.borger.dk/sundhed-og-sygdom/Sygesikring-og-laegevalg/Nyt-sundhedskort//</a></string>
+
+    <string name="driverslicenseLink">Link <a href="https://www.borger.dk/transport-trafik-rejser/Biler-og-koerekort/Koerekort/Fornyelse-og-aendring-af-koerekort/">https://www.borger.dk/transport-trafik-rejser/Biler-og-koerekort/Koerekort/Fornyelse-og-aendring-af-koerekort//</a></string>
 </resources>
