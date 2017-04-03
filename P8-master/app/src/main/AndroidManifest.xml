@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".BankCard" />
+        <activity android:name=".DriversLicence" />
+        <activity android:name=".Rejsekort" />
+        <activity android:name=".Sundhedskort" />
+        <activity android:name=".Ungdomskort"></activity>
     </application>
 
 </manifest>
