@@ -15,13 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CustomAdapter extends BaseAdapter{
-    String [] result;
+    int[] result;
     Context context;
     int [] imageId;
     private static LayoutInflater inflater=null;
-    public CustomAdapter(MainActivity mainActivity,String[] prgmNameList, int[] prgmImages) {
+    public CustomAdapter(MainActivity mainActivity, int[] prgmImages) {
         // TODO Auto-generated constructor stub
-        result=prgmNameList;
+        //result=prgmNameList;
+        result = prgmImages;
         context=mainActivity;
         imageId=prgmImages;
         inflater = ( LayoutInflater )context.
@@ -48,7 +49,7 @@ public class CustomAdapter extends BaseAdapter{
 
     public class Holder
     {
-        TextView tv;
+
         ImageView img;
     }
     @Override
@@ -57,9 +58,7 @@ public class CustomAdapter extends BaseAdapter{
         Holder holder=new Holder();
         final View rowView;
         rowView = inflater.inflate(R.layout.activity_list_img, null);
-        //holder.tv=(TextView) rowView.findViewById(R.id.textView1);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView);
-        //holder.tv.setText(result[position]);
         holder.img.setImageResource(imageId[position]);
         rowView.setOnClickListener(new OnClickListener() {
             @Override

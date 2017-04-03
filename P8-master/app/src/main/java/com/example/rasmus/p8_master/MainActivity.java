@@ -11,13 +11,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
-    MainActivity context;
 
 
-    ArrayList imgCards;
-    public static int[] images = {R.drawable.img_rejsekort, R.drawable.img_koerekort, R.drawable.img_sundhedskort,
-            R.drawable.img_creditcard, R.drawable.img_ungdomskort};
-    public static String[] prgmNameList = {"Let Us C", "hejej", "hehrej", "hehej", "jugjug"};
+    public static int [] images ={R.drawable.rejsekort_f, R.drawable.ungdomskort_f, R.drawable.bankcard_f,
+                                  R.drawable.sundhedskort_f, R.drawable.driverslicence_f};
+
+   
+
 
     @Override
 
@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        context = this;
 
-        lv = (ListView) findViewById(R.id.listOfCards);
-        lv.setAdapter(new CustomAdapter(this, prgmNameList, images));
+        lv=(ListView) findViewById(R.id.listOfCards);
+        lv.setAdapter(new CustomAdapter(this, images));
+
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
