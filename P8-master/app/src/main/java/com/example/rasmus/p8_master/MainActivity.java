@@ -13,10 +13,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lv;
 
 
-    public static int [] images ={R.drawable.rejsekort_f, R.drawable.ungdomskort_f, R.drawable.bankcard_f,
-                                  R.drawable.sundhedskort_f, R.drawable.driverslicence_f};
-
-   
+    public static int [] images ={R.drawable.rejsekort_f, R.drawable.driverslicence_f, R.drawable.sundhedskort_f,
+                                  R.drawable.bankcard_f, R.drawable.ungdomskort_f};
 
 
     @Override
