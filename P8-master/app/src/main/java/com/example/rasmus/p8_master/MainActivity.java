@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
+
+
 
 
     public static int [] images ={R.drawable.rejsekort_f, R.drawable.driverslicence_f, R.drawable.sundhedskort_f,
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
+
     }
 }
 
