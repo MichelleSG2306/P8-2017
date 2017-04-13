@@ -1,5 +1,6 @@
 package com.example.rasmus.p8_master;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,11 @@ public class Ungdomskort extends AppCompatActivity {
         swipeAdapter=new SwipeAdapter(this);
         swipeAdapter.setImagesValue(new int[]{R.drawable.ungdomskort_f, R.drawable.ungdomskort_b});
         viewPager.setAdapter(swipeAdapter);
+
+        //dots
+        TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPager, true);
+        //dots
         //Swipe Function
     }
 }
