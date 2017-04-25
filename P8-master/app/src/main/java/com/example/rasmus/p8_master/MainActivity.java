@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     public static int [] images ={R.drawable.rejsekort_f, R.drawable.driverslicence_f, R.drawable.sundhedskort_f,
                                   R.drawable.bankcard_f, R.drawable.ungdomskort_f};
 
-
-
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +50,5 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-
 }
 
