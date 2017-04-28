@@ -3,7 +3,7 @@ package com.example.rasmus.p8_master;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Sundhedskort extends AppCompatActivity {
+public class Sundhedskort extends Card {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

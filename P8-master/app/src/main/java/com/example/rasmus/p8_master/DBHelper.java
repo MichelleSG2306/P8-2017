@@ -13,7 +13,7 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "P8.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     //Constructor
     public DBHelper(Context context) {
@@ -23,9 +23,9 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
    public void onCreate(SQLiteDatabase db) {
 
-           Rejsekort obj = new Rejsekort("rejsekort", "1", "123456789", "123,-");
+           Rejsekort obj = new Rejsekort();
 
-           String rejsekortTableName = obj.getRejsekortTableName();
+          /* String rejsekortTableName = obj.getRejsekortTableName();
            String rejsekortColumnId = obj.getRejsekortColumnId();
            String rejsekortColumnCardnumber = obj.getRejsekortColumnCardnumber();
            String rejsekortColumnAmount = obj.getRejsekortColumnAmount();
@@ -44,7 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO" + rejsekortTableName + "(" + rejsekortColumnId + "," + rejsekortColumnCardnumber
                    + "," + rejsekortColumnAmount + ")" +
                 "VALUES(" + rejsekortId + "," + rejsekortCardnumber + "," + rejsekortAmount + ");"
-        );
+        ); */
     }
 
 
@@ -52,13 +52,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS rejsekort;"); //+ PERSON_TABLE_NAME);
         onCreate(db);
-    }
-
-    public Cursor getPerson(int id, String tableName, String columnId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("SELECT * FROM " + tableName + " WHERE " +
-                columnId + "=?", new String[]{Integer.toString(id)});
-        return res;
     }
 
 }
