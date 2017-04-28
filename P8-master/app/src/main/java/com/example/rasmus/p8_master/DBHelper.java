@@ -23,35 +23,30 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
    public void onCreate(SQLiteDatabase db) {
 
-           Rejsekort obj = new Rejsekort();
+           Rejsekort obj = new Rejsekort("1", "123456789", 123);
 
-          /* String rejsekortTableName = obj.getRejsekortTableName();
+           /*String rejsekortTableName = obj.getRejsekortTableName();
            String rejsekortColumnId = obj.getRejsekortColumnId();
            String rejsekortColumnCardnumber = obj.getRejsekortColumnCardnumber();
-           String rejsekortColumnAmount = obj.getRejsekortColumnAmount();
+           String rejsekortColumnAmount = obj.getRejsekortColumnAmount(); */
 
            String rejsekortId = obj.getRejsekortId();
            String rejsekortCardnumber = obj.getRejsekortCardnumber();
-           String rejsekortAmount = obj.getRejsekortAmount();
+           String rejsekortAmount = Integer.toString(obj.getRejsekortAmount());
 
         db.execSQL(
-                "CREATE TABLE " + rejsekortTableName +
-                        "(" + rejsekortColumnId + " INTEGER PRIMARY KEY, " +
-                        rejsekortColumnCardnumber + " TEXT, " +
-                        rejsekortColumnAmount + " TEXT  );"
+                "CREATE TABLE rejsekort (id INTEGER, cardNumber TEXT PRIMARY KEY, amount INTEGER);"
         );
 
-        db.execSQL("INSERT INTO" + rejsekortTableName + "(" + rejsekortColumnId + "," + rejsekortColumnCardnumber
-                   + "," + rejsekortColumnAmount + ")" +
-                "VALUES(" + rejsekortId + "," + rejsekortCardnumber + "," + rejsekortAmount + ");"
-        ); */
+        db.execSQL("INSERT INTO rejsekort (id , cardNumber, amount) VALUES(" + rejsekortId + "," + rejsekortCardnumber + "," + rejsekortAmount + ");"
+        );
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS rejsekort;"); //+ PERSON_TABLE_NAME);
-        onCreate(db);
+        //db.execSQL("DROP TABLE IF EXISTS rejsekort;"); //+ PERSON_TABLE_NAME);
+        //onCreate(db);
     }
 
 }

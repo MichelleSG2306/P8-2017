@@ -1,5 +1,6 @@
 package com.example.rasmus.p8_master;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -47,6 +48,16 @@ public class Rejsekort extends Card {
         tabLayout.setupWithViewPager(viewPager, true);
         //dots
         //Swipe Function
+
+        DBHelper dbHelper = new DBHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor resultSet = db.rawQuery("Select * from rejsekort",null);
+        
+        resultSet.moveToFirst();
+        String cards = resultSet.getString(1);
+        TextView text = (TextView) findViewById(R.id.textView);
+        text.setText(cards);
+
 
     }
 
