@@ -17,7 +17,6 @@ import android.widget.Toast;
 //import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +24,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
+
+
 
 
     public static int [] images ={R.drawable.rejsekort_f, R.drawable.driverslicence_f, R.drawable.sundhedskort_f,
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+
     }
 }
 
