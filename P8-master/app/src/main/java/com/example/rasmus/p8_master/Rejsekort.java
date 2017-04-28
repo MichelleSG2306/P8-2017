@@ -10,15 +10,15 @@ public class Rejsekort extends Card {
 
 
     //Variables to use on each object
-    public static String id;
-    public static String cardNumber;
-    public static String amount;
+    public String id;
+    public String cardNumber;
+    public int amount;
 
     //Constructors
     public Rejsekort(){
     }
 
-    public Rejsekort(String id, String cardNumber, String amount){
+    public Rejsekort(String id, String cardNumber, int amount){
         this.id = id;
         this.cardNumber = cardNumber;
         this.amount = amount;
@@ -40,7 +40,7 @@ public class Rejsekort extends Card {
         return cardNumber;
     }
 
-    public String getRejsekortAmount(){
+    public int getRejsekortAmount(){
         return amount;
     }
 
