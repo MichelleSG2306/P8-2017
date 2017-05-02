@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rasmus.p8_master">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,9 @@
         <activity android:name=".DriversLicence" />
         <activity android:name=".Rejsekort" />
         <activity android:name=".Sundhedskort" />
-        <activity android:name=".Ungdomskort"></activity>
+        <activity android:name=".Ungdomskort"/>
+        <activity android:name=".ScanBarcodeActivity">
+        </activity>
     </application>
 
 </manifest>
