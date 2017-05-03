@@ -12,14 +12,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class CustomAdapter extends BaseAdapter{
-    int[] result;
+    ArrayList<Integer> result;
     Context context;
-    int [] imageId;
+    ArrayList<Integer> imageId;
     private static LayoutInflater inflater=null;
-    public CustomAdapter(MainActivity mainActivity, int[] prgmImages) {
+    public CustomAdapter(MainActivity mainActivity, ArrayList<Integer> prgmImages) {
         // TODO Auto-generated constructor stub
         //result=prgmNameList;
         result = prgmImages;
@@ -32,13 +33,13 @@ public class CustomAdapter extends BaseAdapter{
 
     public int getCount() {
         // TODO Auto-generated method stub
-        return result.length;
+        return result.size();
     }
 
     @Override
-    public Object getItem(int position) {
+    public Object  getItem(int position) {
         // TODO Auto-generated method stub
-        return position;
+        return result.get(position);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class CustomAdapter extends BaseAdapter{
         final View rowView;
         rowView = inflater.inflate(R.layout.activity_list_img, null);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView);
-        holder.img.setImageResource(imageId[position]);
+        holder.img.setImageResource(imageId.get(position));
         rowView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

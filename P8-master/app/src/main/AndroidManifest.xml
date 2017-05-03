@@ -22,9 +22,9 @@
         <activity android:name=".DriversLicence" />
         <activity android:name=".Rejsekort" />
         <activity android:name=".Sundhedskort" />
-        <activity android:name=".Ungdomskort"/>
-        <activity android:name=".ScanBarcodeActivity">
-        </activity>
+        <activity android:name=".Ungdomskort" />
+        <activity android:name=".ScanBarcodeActivity"></activity>
+        <activity android:name=".AddNewCard"></activity>
     </application>
 
 </manifest>
