@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //import org.apache.http.NameValuePair;
@@ -103,8 +104,11 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.ungdomskort_f);
     }
 
-    public void addItem (View v){
+    public void addItem (NewCard obj){
         images.add(R.drawable.paint_bankcard);
+        //TextView textView = (TextView) findViewById(R.id.textview);
+        //String barcode = obj.getBarcode();
+        //textView.setText(barcode);
         lv.invalidateViews();
     }
 

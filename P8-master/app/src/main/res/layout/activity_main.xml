@@ -4,14 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:text="Add"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/add"
-        android:textStyle="bold"
-        android:onClick="addItem" />
-
     <ListView
         android:id="@+id/listOfCards"
         android:layout_width="match_parent"

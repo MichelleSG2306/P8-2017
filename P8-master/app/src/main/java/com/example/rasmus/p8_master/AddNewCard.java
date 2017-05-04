@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -15,6 +16,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 public class AddNewCard extends AppCompatActivity {
 
     private String scannedBarcode;
+    private int counter = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,15 @@ public class AddNewCard extends AppCompatActivity {
                 if (data != null) {
                     Barcode barcode = data.getParcelableExtra("barcode");
                     scannedBarcode = barcode.rawValue;
+
+                    TextView showBarcode = (TextView) findViewById(R.id.showBarcode);
+                    showBarcode.setText(scannedBarcode);
+                    counter++;
+                    String counterString = Integer.toString(counter);
+
+                    NewCard newCard = new NewCard(counterString, 187483-1111, "h&m", scannedBarcode, "");
+                    MainActivity mainActivity = new MainActivity();
+                    mainActivity.addItem(newCard);
 
                 }
             }
