@@ -16,15 +16,17 @@ public class Rejsekort extends Card {
     public String id;
     public String cardNumber;
     public int amount;
+    SQLiteDatabase db;
 
     //Constructors
     public Rejsekort(){
     }
 
-    public Rejsekort(String id, String cardNumber, int amount){
+    public Rejsekort(String id, String cardNumber, int amount, SQLiteDatabase db){
         this.id = id;
         this.cardNumber = cardNumber;
         this.amount = amount;
+        this.db = db;
     }
 
     //Swipe Function
@@ -49,15 +51,28 @@ public class Rejsekort extends Card {
         //dots
         //Swipe Function
 
-        DBHelper dbHelper = new DBHelper(this);
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor resultSet = db.rawQuery("Select * from rejsekort",null);
-        
-        resultSet.moveToFirst();
-        String cards = resultSet.getString(1);
-        TextView text = (TextView) findViewById(R.id.textView);
-        text.setText(cards);
+            DBHelper dbHelper = new DBHelper(Rejsekort.this);
+            db = dbHelper.getReadableDatabase();
+            Cursor name = db.rawQuery("Select last_name, first_name from users",null);
 
+            name.moveToFirst();
+            String firstName = name.getString(1);
+            String lastName = name.getString(0);
+            String fullName = firstName + " " + lastName;
+            TextView text = (TextView) findViewById(R.id.textView);
+            text.append(" " + fullName);
+
+            Cursor cardNumber = db.rawQuery("Select card_no from rejsekort", null);
+            cardNumber.moveToFirst();
+            String cardNumber2 = cardNumber.getString(0);
+            TextView textCardNumber = (TextView) findViewById(R.id.card_number);
+            textCardNumber.append(" " + cardNumber2);
+
+            Cursor amount = db.rawQuery("Select amount from rejsekort", null);
+            amount.moveToFirst();
+            String amount2 = amount.getString(0);
+            TextView textAmount = (TextView) findViewById(R.id.amount);
+            textAmount.append(" " + amount2 + ",-");
 
     }
 

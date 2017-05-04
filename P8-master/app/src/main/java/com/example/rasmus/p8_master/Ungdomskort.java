@@ -1,9 +1,12 @@
 package com.example.rasmus.p8_master;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class Ungdomskort extends Card {
 
@@ -12,6 +15,7 @@ public class Ungdomskort extends Card {
     public String uKIssuedDate;
     public String uKExpirationDate;
     public String uKDateOfBirth;
+    SQLiteDatabase db;
 
     public Ungdomskort() {
 
@@ -45,6 +49,38 @@ public class Ungdomskort extends Card {
         tabLayout.setupWithViewPager(viewPager, true);
         //dots
         //Swipe Function
+
+        DBHelper dbHelper = new DBHelper(Ungdomskort.this);
+        db = dbHelper.getReadableDatabase();
+
+        Cursor name = db.rawQuery("Select last_name, first_name from users",null);
+        name.moveToFirst();
+        String firstName = name.getString(1);
+        String lastName = name.getString(0);
+        String fullName = firstName + " " + lastName;
+        TextView text = (TextView) findViewById(R.id.textName);
+        text.append(" " + fullName);
+
+        Cursor travelZone = db.rawQuery("Select travelzone from ungdomskort",null);
+        travelZone.moveToFirst();
+        String travelZone2 = travelZone.getString(0);
+        TextView textTravelZone = (TextView) findViewById(R.id.textTravelZones);
+        textTravelZone.append(" " + travelZone2);
+
+        Cursor validationPeriod = db.rawQuery("Select issue_date, expiration_date from ungdomskort", null);
+        validationPeriod.moveToFirst();
+        String issuePeriod = validationPeriod.getString(0);
+        String expirationPeriod = validationPeriod.getString(1);
+        String validationPeriod2 = issuePeriod + " - " + expirationPeriod;
+        TextView textValidationPeriod = (TextView) findViewById(R.id.textValidationPeriod);
+        textValidationPeriod.append(" " + validationPeriod2);
+
+        Cursor dateOfBirth = db.rawQuery("Select date_of_birth from ungdomskort",null);
+        dateOfBirth.moveToFirst();
+        String dateOfBirth2 = dateOfBirth.getString(0);
+        TextView textDateOfBirth = (TextView) findViewById(R.id.textDateOfBirth);
+        textDateOfBirth.append(" " + dateOfBirth2);
+
     }
 
     public String getuKCardNumber() {
