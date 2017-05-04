@@ -1,5 +1,8 @@
 package com.example.rasmus.p8_master;
 
+
+
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -7,9 +10,22 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
+//import org.apache.http.NameValuePair;
+//import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -22,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static int [] images ={R.drawable.rejsekort_f, R.drawable.driverslicence_f, R.drawable.sundhedskort_f,
                                   R.drawable.bankcard_f, R.drawable.ungdomskort_f};
-
 
     @Override
 
@@ -42,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
 
             }
+
+
 
 
 

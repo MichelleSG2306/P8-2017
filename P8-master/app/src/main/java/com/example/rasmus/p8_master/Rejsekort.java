@@ -1,11 +1,33 @@
 package com.example.rasmus.p8_master;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
+import android.database.Cursor;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
-public class Rejsekort extends AppCompatActivity {
+public class Rejsekort extends Card {
+
+
+
+    //Variables to use on each object
+    public String id;
+    public String cardNumber;
+    public int amount;
+    SQLiteDatabase db;
+
+    //Constructors
+    public Rejsekort(){
+    }
+
+    public Rejsekort(String id, String cardNumber, int amount, SQLiteDatabase db){
+        this.id = id;
+        this.cardNumber = cardNumber;
+        this.amount = amount;
+        this.db = db;
+    }
 
     //Swipe Function
     SwipeAdapter swipeAdapter;
@@ -13,10 +35,11 @@ public class Rejsekort extends AppCompatActivity {
     //Swipe Function
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+        protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rejsekort);
-        //Swipe Function
+          
+            //Swipe Function
         viewPager=(ViewPager)findViewById(R.id.view_pager);
         swipeAdapter=new SwipeAdapter(this);
         swipeAdapter.setImagesValue(new int[]{R.drawable.rejsekort_f, R.drawable.rejsekort_b});
@@ -27,5 +50,43 @@ public class Rejsekort extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager, true);
         //dots
         //Swipe Function
+
+            DBHelper dbHelper = new DBHelper(Rejsekort.this);
+            db = dbHelper.getReadableDatabase();
+            Cursor name = db.rawQuery("Select last_name, first_name from users",null);
+
+            name.moveToFirst();
+            String firstName = name.getString(1);
+            String lastName = name.getString(0);
+            String fullName = firstName + " " + lastName;
+            TextView text = (TextView) findViewById(R.id.textView);
+            text.append(" " + fullName);
+
+            Cursor cardNumber = db.rawQuery("Select card_no from rejsekort", null);
+            cardNumber.moveToFirst();
+            String cardNumber2 = cardNumber.getString(0);
+            TextView textCardNumber = (TextView) findViewById(R.id.card_number);
+            textCardNumber.append(" " + cardNumber2);
+
+            Cursor amount = db.rawQuery("Select amount from rejsekort", null);
+            amount.moveToFirst();
+            String amount2 = amount.getString(0);
+            TextView textAmount = (TextView) findViewById(R.id.amount);
+            textAmount.append(" " + amount2 + ",-");
+
     }
+
+    //get methods
+    public String getRejsekortId(){
+        return id;
+    }
+
+    public String getRejsekortCardnumber(){
+        return cardNumber;
+    }
+
+    public int getRejsekortAmount(){
+        return amount;
+    }
+
 }
