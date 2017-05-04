@@ -6,6 +6,7 @@ package com.example.rasmus.p8_master;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -66,11 +67,12 @@ public class CustomAdapter extends BaseAdapter{
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 //Toast.makeText(context, "You Clicked An Image ", Toast.LENGTH_LONG).show();
-                if (position == 0) {
-                    Intent myintent = new Intent(context, Rejsekort.class);
-                    //startActivityForResult(myintent, 0)
-                    context.startActivity(myintent);
-                }
+
+                    if (position == 0) {
+                        Intent myintent = new Intent(context, Rejsekort.class);
+                        //startActivityForResult(myintent, 0)
+                        context.startActivity(myintent);
+                    }
                 if (position == 1) {
                     Intent myintent = new Intent(context, DriversLicence.class);
                     context.startActivity(myintent);

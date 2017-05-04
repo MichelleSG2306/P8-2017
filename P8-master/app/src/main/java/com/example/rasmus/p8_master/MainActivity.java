@@ -1,13 +1,36 @@
 package com.example.rasmus.p8_master;
 
+
+
+
+
+
+import android.Manifest;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
 import android.view.Menu;
 import android.view.MenuItem;
+
+import android.util.Log;
+import android.util.Pair;
+
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
+//import org.apache.http.NameValuePair;
+//import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import java.util.ArrayList;
 
@@ -22,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Integer> images=new ArrayList<Integer>();
     int clickCounter=0;
-
 
     @Override
 
@@ -42,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
 
             }
+
 
         });
 
