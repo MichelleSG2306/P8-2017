@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by Rasmus on 25-04-2017.
@@ -31,6 +30,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String RK_TABLE_NAME = "rejsekort";
     public static final String RK_COLUMN_CARD_NO = "card_no";
     public static final String RK_COLUMN_AMOUNT = "amount";
+
+    /**public static final String BC_TABLE_NAME = "bank_card";
+    //public static final String RK_COLUMN_CARD_NO = "card_no";
+    public static final String BC_COLUMN_ACCOUNT_NO = "account_no";
+    public static final String BC_COLUMN_REG_NO = "reg_no";
+    public static final String BC_COLUMN_EXPIRATION_DATE = "expiration_date";
+    public static final String BC_COLUMN_SECURITY_NO = "security_no";
+    //public static final String RK_COLUMN_AMOUNT = "amount";*/
+
+
 
 
     //Constructor
@@ -67,7 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
         int rejsekortImageF = objRejsekort.getFrontPhoto();
         int rejsekortImageB = objRejsekort.getBackPhoto();
 
-        Card objBankCard = new BankCard("", "Bank Card", R.drawable.bankcard_f, R.drawable.bankcard_b, "123456789", "123456", "1234", "24/07", "789", 400);
+        BankCard objBankCard = new BankCard("", "Bank Card", R.drawable.bankcard_f, R.drawable.bankcard_b, "123456789", "123456", "1234", "24/07", "789", 400);
         String bankCardType = objBankCard.getType();
         int bankCardImageF = objBankCard.getFrontPhoto();
         int bankCardImageB = objBankCard.getBackPhoto();
@@ -110,9 +119,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         String rejsekortCardNumber = objRejsekort.getCardNumber();
-        Cursor cardIdFk = db.rawQuery("select " + CARD_COLUMN_CARD_ID + " from " + CARD_TABLE_NAME + " where " + CARD_COLUMN_CARD_TYPE + " = '" + rejsekortCardType + "'", null);
-        cardIdFk.moveToFirst();
-        String rejsekortCardIdFk = cardIdFk.getString(0);
+        Cursor cardIdFkRK = db.rawQuery("select " + CARD_COLUMN_CARD_ID + " from " + CARD_TABLE_NAME + " where " + CARD_COLUMN_CARD_TYPE + " = '" + rejsekortCardType + "'", null);
+        cardIdFkRK.moveToFirst();
+        String rejsekortCardIdFk = cardIdFkRK.getString(0);
         String rejsekortAmount = Integer.toString(objRejsekort.getAmount());
 
         db.execSQL(
@@ -128,7 +137,34 @@ public class DBHelper extends SQLiteOpenHelper {
         );
 //_____________________________________________________________________________________//
 
-        /*
+        /**String bankcardCardNumber = objBankCard.getbCCardNumber();
+        Cursor cardIdFkBC = db.rawQuery("select " + CARD_COLUMN_CARD_ID + " from " + CARD_TABLE_NAME + " where " + CARD_COLUMN_CARD_TYPE + " = '" + bankCardType + "'", null);
+        cardIdFkBC.moveToFirst();
+        String bankcardCardIdFk = cardIdFkBC.getString(0);
+        String bankcardAmount = Integer.toString(objBankCard.getbCAmount());
+        String bankcardAccountNumber=objBankCard.getbCAccountNumber();
+        String bankcardRegNumber=objBankCard.getbCRegNumber();
+        String bankcardExpirationDate=objBankCard.getbCExpirationDate();
+        String bankcardSecurityNumber=objBankCard.getbCSecurityNumber();
+
+        db.execSQL(
+                "CREATE TABLE " + BC_TABLE_NAME + "(" +
+                        RK_COLUMN_CARD_NO + " VARCHAR(30) NOT NULL PRIMARY KEY, " +
+                        CARD_COLUMN_CARD_ID + " INT NOT NULL, " +
+                        BC_COLUMN_ACCOUNT_NO + "VARCHAR(30) NOT NULL," +
+                        BC_COLUMN_REG_NO + "INT NOT NULL," +
+                        BC_COLUMN_EXPIRATION_DATE + "DATE NOT NULL," +
+                        BC_COLUMN_SECURITY_NO + "VARCHAR(4) NOT NULL," +
+                        RK_COLUMN_AMOUNT + " INT NOT NULL," +
+                        "FOREIGN KEY (" + CARD_COLUMN_CARD_ID + ") REFERENCES " + CARD_TABLE_NAME + " (" + CARD_COLUMN_CARD_ID + ")" +
+                        ");"
+        );
+
+        db.execSQL("INSERT INTO " + BC_TABLE_NAME + " VALUES('" + bankcardCardNumber + "'," + bankcardCardIdFk + ",'" + bankcardAccountNumber + "'," + bankcardRegNumber + ",'" + bankcardExpirationDate + "','" + bankcardSecurityNumber + "'," + bankcardAmount + ");"
+        );*/
+//_____________________________________________________________________________________//
+
+
 
         BankCard bankCardObj = new BankCard();
         db.execSQL("CREATE TABLE bank_card \n" +
@@ -207,7 +243,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO ungdomskort VALUES(123456789, 5, 'Randers - Aalborg', '2012-03-04', '2013-03-04', '1992-04-12' )");
 
-        */
+        
 
     }
 
