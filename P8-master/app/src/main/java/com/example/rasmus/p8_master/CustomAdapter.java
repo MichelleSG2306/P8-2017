@@ -92,7 +92,9 @@ public class CustomAdapter extends BaseAdapter{
 
                 if (position > 4) {
                     Intent myintent = new Intent(context, NewCard.class);
+                    myintent.putExtra("EXTRA_POSITION_ID", position);
                     context.startActivity(myintent);
+
                 }
 
 

@@ -110,14 +110,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void updateAfterDelete(){
+        lv.invalidateViews();
+    }
+
     public void addImagesToListview() {
         DBHelper dbHelper = new DBHelper(MainActivity.this);
         db = dbHelper.getReadableDatabase();
         Cursor getImages = db.rawQuery("Select front_photo from cards", null);
         getImages.moveToFirst();
         while(!getImages.isAfterLast()) {
-            //String image = getImages.getString(0);
-            //int image2 = Integer.parseInt(image);
             int image2 = getImages.getInt(0);
             images.add(image2);
             getImages.moveToNext();

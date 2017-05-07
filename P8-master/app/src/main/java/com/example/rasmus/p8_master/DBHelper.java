@@ -128,9 +128,9 @@ public class DBHelper extends SQLiteOpenHelper {
         );
 //_____________________________________________________________________________________//
 
-        /*
 
-        BankCard bankCardObj = new BankCard();
+
+        //BankCard bankCardObj = new BankCard();
         db.execSQL("CREATE TABLE bank_card \n" +
                 "(card_no VARCHAR(30) NOT NULL PRIMARY KEY, \n" +
                 "card_id INT, \n" +
@@ -207,8 +207,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO ungdomskort VALUES(123456789, 5, 'Randers - Aalborg', '2012-03-04', '2013-03-04', '1992-04-12' )");
 
-        */
-
     }
 
 
@@ -229,6 +227,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
             db.insert(CARD_TABLE_NAME, null, contentValues);
         }
+
+    public void deleteCard(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+CARD_TABLE_NAME+" where " + CARD_COLUMN_CARD_ID + " = "+id);
+        MainActivity main = new MainActivity();
+        main.updateAfterDelete();
+    }
     }
 
 
