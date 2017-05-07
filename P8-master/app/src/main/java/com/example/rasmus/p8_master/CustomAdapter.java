@@ -68,27 +68,36 @@ public class CustomAdapter extends BaseAdapter{
                 // TODO Auto-generated method stub
                 //Toast.makeText(context, "You Clicked An Image ", Toast.LENGTH_LONG).show();
 
-                    if (position == 0) {
+                if (position == 0) {
                         Intent myintent = new Intent(context, Rejsekort.class);
                         //startActivityForResult(myintent, 0)
                         context.startActivity(myintent);
-                    }
+                }
                 if (position == 1) {
-                    Intent myintent = new Intent(context, DriversLicence.class);
+                    Intent myintent = new Intent(context, BankCard.class);
                     context.startActivity(myintent);
                 }
                 if (position == 2) {
-                    Intent myintent = new Intent(context, Sundhedskort.class);
+                    Intent myintent = new Intent(context, DriversLicence.class);
                     context.startActivity(myintent);
                 }
                 if (position == 3) {
-                    Intent myintent = new Intent(context, BankCard.class);
+                    Intent myintent = new Intent(context, Sundhedskort.class);
                     context.startActivity(myintent);
                 }
                 if (position == 4) {
                     Intent myintent = new Intent(context, Ungdomskort.class);
                     context.startActivity(myintent);
                 }
+
+                if (position > 4) {
+                    Intent myintent = new Intent(context, NewCard.class);
+                    context.startActivity(myintent);
+                }
+
+
+
+
             }
         });
         return rowView;

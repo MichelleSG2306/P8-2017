@@ -7,7 +7,11 @@ package com.example.rasmus.p8_master;
 
 import android.Manifest;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -30,6 +34,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,6 +43,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
+    SQLiteDatabase db;
+    private DBHelper databaseHandler;
 
 
 
@@ -57,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
         lv=(ListView) findViewById(R.id.listOfCards);
         lv.setAdapter(new CustomAdapter(this, images));
 
-        this.addStateItem();
+        //this.addStateItem();
+        this.addImagesToListview();
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -96,21 +104,27 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addStateItem (){
-        images.add(R.drawable.rejsekort_f);
-        images.add(R.drawable.driverslicence_f);
-        images.add(R.drawable.sundhedskort_f);
-        images.add(R.drawable.bankcard_f);
-        images.add(R.drawable.ungdomskort_f);
+    public void updateListView(){
+        addImagesToListview();
+        lv.invalidateViews();
+
     }
 
-    public void addItem (NewCard obj){
-        images.add(R.drawable.paint_bankcard);
-        //TextView textView = (TextView) findViewById(R.id.textview);
-        //String barcode = obj.getBarcode();
-        //textView.setText(barcode);
-        lv.invalidateViews();
+    public void addImagesToListview() {
+        DBHelper dbHelper = new DBHelper(MainActivity.this);
+        db = dbHelper.getReadableDatabase();
+        Cursor getImages = db.rawQuery("Select front_photo from cards", null);
+        getImages.moveToFirst();
+        while(!getImages.isAfterLast()) {
+            //String image = getImages.getString(0);
+            //int image2 = Integer.parseInt(image);
+            int image2 = getImages.getInt(0);
+            images.add(image2);
+            getImages.moveToNext();
+            }
+
     }
+
 
 }
 

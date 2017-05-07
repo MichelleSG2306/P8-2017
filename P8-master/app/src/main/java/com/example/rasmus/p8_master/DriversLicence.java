@@ -20,13 +20,31 @@ public class DriversLicence extends Card {
     public String dLCategoryIssueDate;
     public String dLCategoryExpirationDate;
     public String dLlimitation;
+    int driversLiceneImageF;
+    int driversLicenceImageB;
     SQLiteDatabase db;
 
     public DriversLicence(){
 
     }
 
-    public DriversLicence(String dLCardNumber, String dLDateOfBirth, String dLissuedDate, String dLExpirationDate, String dLIssuedBy, String dLSignature, String dLCategory, String dLCategoryIssueDate, String dLCategoryExpirationDate, String dLlimitation) {
+    public DriversLicence(String cardID, String type, int frontPhoto, int backPhoto, String dLCardNumber, String dLDateOfBirth, String dLissuedDate, String dLExpirationDate, String dLIssuedBy, String dLSignature, String dLCategory, String dLCategoryIssueDate, String dLCategoryExpirationDate, String dLlimitation) {
+        super(cardID, type, frontPhoto, backPhoto);
+        this.dLCardNumber = dLCardNumber;
+        this.dLDateOfBirth = dLDateOfBirth;
+        this.dLissuedDate = dLissuedDate;
+        this.dLExpirationDate = dLExpirationDate;
+        this.dLIssuedBy = dLIssuedBy;
+        this.dLSignature = dLSignature;
+        this.dLCategory = dLCategory;
+        this.dLCategoryIssueDate = dLCategoryIssueDate;
+        this.dLCategoryExpirationDate = dLCategoryExpirationDate;
+        this.dLlimitation = dLlimitation;
+        this.driversLiceneImageF = frontPhoto;
+        this.driversLicenceImageB = backPhoto;
+    }
+
+    /* public DriversLicence(String dLCardNumber, String dLDateOfBirth, int photoF, int photoB, String dLissuedDate, String dLExpirationDate, String dLIssuedBy, String dLSignature, String dLCategory, String dLCategoryIssueDate, String dLCategoryExpirationDate, String dLlimitation) {
 
         this.dLCardNumber = dLCardNumber;
         this.dLDateOfBirth = dLDateOfBirth;
@@ -38,7 +56,10 @@ public class DriversLicence extends Card {
         this.dLCategoryIssueDate = dLCategoryIssueDate;
         this.dLCategoryExpirationDate = dLCategoryExpirationDate;
         this.dLlimitation = dLlimitation;
-    }
+        this.driversLiceneImageF = photoF;
+        this.driversLicenceImageB = photoB;
+
+    } */
 
     //Swipe Function
     SwipeAdapter swipeAdapter;
@@ -164,6 +185,14 @@ public class DriversLicence extends Card {
 
     public String getdLlimitation() {
         return dLlimitation;
+    }
+
+    public int getDriversLiceneImageF() {
+        return driversLiceneImageF;
+    }
+
+    public int getDriversLicenceImageB() {
+        return driversLicenceImageB;
     }
 
 }
