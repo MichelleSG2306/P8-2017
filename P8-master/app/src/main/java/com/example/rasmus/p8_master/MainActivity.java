@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
  
         this.updateListView();
 
-        this.addImagesToListview();
+        //this.addImagesToListview();
         /**/
         this.addTitlesToListview();
         /**/
@@ -154,6 +154,15 @@ public class MainActivity extends AppCompatActivity {
             titles.add(title2);
             getTitles.moveToNext();
         }
+
+        Cursor getTitles2=db.rawQuery("Select name from othercards", null);
+        getTitles2.moveToFirst();
+        while(!getTitles2.isAfterLast()){
+            String title2=getTitles2.getString(0);
+            titles.add(title2);
+            getTitles2.moveToNext();
+        }
+
     }
     /**/
 

@@ -26,25 +26,25 @@
         android:id="@+id/textTravelZones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Travel Zones" />
+        android:text="Travel Zones:" />
 
     <TextView
         android:id="@+id/textValidationPeriod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Validation period" />
+        android:text="Validation period:" />
 
     <TextView
         android:id="@+id/textName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Full name" />
+        android:text="Full name:" />
 
     <TextView
         android:id="@+id/textDateOfBirth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date of Birth" />
+        android:text="Date of Birth:" />
 
     <TextView
         android:id="@+id/textView8"

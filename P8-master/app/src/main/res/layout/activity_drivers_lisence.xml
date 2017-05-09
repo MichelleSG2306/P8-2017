@@ -26,68 +26,68 @@
         android:id="@+id/textCPR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CPR number" />
+        android:text="CPR number:" />
 
     <TextView
         android:id="@+id/textLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Last name" />
+        android:text="Last name:" />
 
     <TextView
         android:id="@+id/textFirstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="First and middle name" />
+        android:text="First and middle name:" />
 
     <TextView
         android:id="@+id/textDateOfBirth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date of birth and place" />
+        android:text="Date of birth and place:" />
 
     <TextView
         android:id="@+id/textCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Country of birth" />
+        android:text="Country of birth:" />
 
     <TextView
         android:id="@+id/textIssueDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Issue date" />
+        android:text="Issue date:" />
 
     <TextView
         android:id="@+id/textExpirationDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Expiration date" />
+        android:text="Expiration date:" />
 
     <TextView
         android:id="@+id/textIssuedBy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Issued by" />
+        android:text="Issued by:" />
 
 
     <TextView
         android:id="@+id/textLicenceNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="License date" />
+        android:text="License date:" />
 
     <TextView
         android:id="@+id/textCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Category" />
+        android:text="Category:" />
 
     <TextView
         android:id="@+id/textSignature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Signature" />
+        android:text="Signature:" />
 
     <TextView
         android:id="@+id/textView8"

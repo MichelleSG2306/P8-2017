@@ -26,19 +26,19 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Full name" />
+        android:text="Full name:" />
 
     <TextView
         android:id="@+id/card_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Card number" />
+        android:text="Card number:" />
 
     <TextView
         android:id="@+id/amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Amount" />
+        android:text="Amount:" />
 
     <TextView
         android:id="@+id/textView7"

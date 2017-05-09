@@ -30,37 +30,37 @@
     android:id="@+id/fullName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Full Name" />
+    android:text="Full Name:" />
 
 <TextView
     android:id="@+id/cardNumber"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Card Number" />
+    android:text="Card Number:" />
 
 <TextView
     android:id="@+id/accountNumber"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Account number" />
+    android:text="Account number:" />
 
 <TextView
     android:id="@+id/regNumber"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Registration number" />
+    android:text="Registration number:" />
 
 <TextView
     android:id="@+id/expDate"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Experation Date" />
+    android:text="Experation Date:" />
 
 <TextView
     android:id="@+id/secNumber"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Security number" />
+    android:text="Security number:" />
 
 <TextView
     android:id="@+id/textView3"

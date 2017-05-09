@@ -26,43 +26,43 @@
         android:id="@+id/textCPR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CPR number" />
+        android:text="CPR number:" />
 
     <TextView
         android:id="@+id/textValidFrom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Valid from" />
+        android:text="Valid from:" />
 
     <TextView
         android:id="@+id/textFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Full name" />
+        android:text="Full name:" />
 
     <TextView
         android:id="@+id/textAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Address" />
+        android:text="Address:" />
 
     <TextView
         android:id="@+id/textRegion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Region" />
+        android:text="Region:" />
 
     <TextView
         android:id="@+id/textMunicipality"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Municipality" />
+        android:text="Municipality:" />
 
     <TextView
         android:id="@+id/textDoctor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Doctor" />
+        android:text="Doctor:" />
 
     <TextView
         android:id="@+id/textDoctorsAddress"
