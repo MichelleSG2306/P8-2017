@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.database.Cursor;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
 
 public class Rejsekort extends Card {
 
@@ -16,17 +17,22 @@ public class Rejsekort extends Card {
     public String id;
     public String cardNumber;
     public int amount;
+    int rejsekortImageF;
+    int rejsekortImageB;
     SQLiteDatabase db;
+
 
     //Constructors
     public Rejsekort(){
     }
 
-    public Rejsekort(String id, String cardNumber, int amount, SQLiteDatabase db){
+    public Rejsekort(String cardID, String type, int frontPhoto, int backPhoto, String id, String cardNumber, int amount) {
+        super(cardID, type, frontPhoto, backPhoto);
         this.id = id;
         this.cardNumber = cardNumber;
         this.amount = amount;
-        this.db = db;
+        this.rejsekortImageF = frontPhoto;
+        this.rejsekortImageB = backPhoto;
     }
 
     //Swipe Function
@@ -38,7 +44,7 @@ public class Rejsekort extends Card {
         protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rejsekort);
-          
+
             //Swipe Function
         viewPager=(ViewPager)findViewById(R.id.view_pager);
         swipeAdapter=new SwipeAdapter(this);
@@ -77,16 +83,24 @@ public class Rejsekort extends Card {
     }
 
     //get methods
-    public String getRejsekortId(){
+
+    public String getId() {
         return id;
     }
 
-    public String getRejsekortCardnumber(){
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public int getRejsekortAmount(){
+    public int getAmount() {
         return amount;
     }
 
+    public int getRejsekortImageF() {
+        return rejsekortImageF;
+    }
+
+    public int getRejsekortImageB() {
+        return rejsekortImageB;
+    }
 }

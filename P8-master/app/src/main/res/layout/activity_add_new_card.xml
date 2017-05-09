@@ -5,33 +5,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/nameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="136dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Name" />
+        android:hint="Name of new card"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Scanner"
+        android:text="Scan barcode"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/scanner"
         android:textStyle="bold"
-        android:layout_below="@+id/editText2"
-        android:onClick="scanBarcode"/>
+        android:onClick="scanBarcode"
+        android:layout_below="@+id/nameInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:id="@+id/showBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/scanner"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        android:text="TextView" />
+        android:hint="barcode" />
+
+    <Button
+        android:id="@+id/accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="Save card"
+        android:onClick="saveCard"/>
+
+   <!-- <ToggleButton
+        android:id="@+id/green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/accept"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
+        android:background="#00ff00"
+        android:textOff="Choose color"
+        android:textOn="Green"
+        />
+
+    <ToggleButton
+        android:id="@+id/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/green"
+        android:layout_centerHorizontal="true"
+        android:background="#0000ff"
+        android:textOff="Choose color"
+        android:textOn="Blue"
+        />-->
 
 
 </RelativeLayout>

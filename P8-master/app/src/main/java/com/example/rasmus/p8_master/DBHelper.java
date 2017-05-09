@@ -1,10 +1,10 @@
 package com.example.rasmus.p8_master;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by Rasmus on 25-04-2017.
@@ -15,80 +15,156 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "P8.db";
     private static final int DATABASE_VERSION = 1;
 
+    public static final String USER_TABLE_NAME = "users";
+    public static final String USER_COLUMN_CPR = "cpr";
+    public static final String USER_COLUMN_LAST_NAME = "last_name";
+    public static final String USER_COLUMNS_FIRST_NAME = "first_name";
+
+    public static final String CARD_TABLE_NAME = "cards";
+    public static final String CARD_COLUMN_CARD_ID = "card_id";
+    public static final String CARD_COLUMN_CPR = "cpr";
+    public static final String CARD_COLUMN_CARD_TYPE = "card_type";
+    public static final String CARD_COLUMN_FRONT_PHOTO = "front_photo";
+    public static final String CARD_COLUMN_BACK_PHOTO = "back_photo";
+
+    public static final String RK_TABLE_NAME = "rejsekort";
+    public static final String RK_COLUMN_CARD_NO = "card_no";
+    public static final String RK_COLUMN_AMOUNT = "amount";
+
+    /**public static final String BC_TABLE_NAME = "bank_card";
+    //public static final String RK_COLUMN_CARD_NO = "card_no";
+    public static final String BC_COLUMN_ACCOUNT_NO = "account_no";
+    public static final String BC_COLUMN_REG_NO = "reg_no";
+    public static final String BC_COLUMN_EXPIRATION_DATE = "expiration_date";
+    public static final String BC_COLUMN_SECURITY_NO = "security_no";
+    //public static final String RK_COLUMN_AMOUNT = "amount";*/
+
+
+
+
     //Constructor
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    User user = new User("170492-1802", "Hans", "Hansen");
+    String userCpr = user.getCPR();
+    String userFirstName = user.getFirstName();
+    String userLastName = user.getLastName();
+
     @Override
-   public void onCreate(SQLiteDatabase db) {
-
-//____________________________________________________________________________________//
-        User user = new User("1704921802", "Hans", "Hansen");
-        String userCpr = user.getCPR();
-        String userFirstName = user.getFirstName();
-        String userLastName = user.getLastName();
-
-        db.execSQL("CREATE TABLE users\n" +
-                "(\n" +
-                "cpr VARCHAR(11) NOT NULL PRIMARY KEY,\n" +
-                "last_name VARCHAR(30) NOT NULL, \n" +
-                "first_name VARCHAR(20) NOT NULL\n" +
-                ");"
-        );
-
-       db.execSQL("INSERT INTO users (cpr , last_name , first_name)  VALUES ('187483-1111','Hansen','Hans' );"
-       );
-        //For some reason this doesn't work!!!
-        //db.execSQL("INSERT INTO users (cpr , last_name, first_name) VALUES(" + userCpr + "," + userLastName + "," + userFirstName + ");"
-        //);
-
+    public void onCreate(SQLiteDatabase db) {
 
 //____________________________________________________________________________________//
 
 
-        db.execSQL("CREATE TABLE cards \n" +
-                "(\n" +
-                "card_id INT PRIMARY KEY, \n" +
-                "cpr VARCHAR(11) NOT NULL,\n" +
-                "card_type VARCHAR(30), \n" +
-                "front_photo BLOB, back_photo BLOB,\n" +
-                "FOREIGN KEY (cpr) REFERENCES users(cpr)\n" +
-                ")\n" +
-                ";\n");
+        db.execSQL("CREATE TABLE " + USER_TABLE_NAME + "(" +
+                USER_COLUMN_CPR + " VARCHAR(11) NOT NULL PRIMARY KEY, " +
+                USER_COLUMN_LAST_NAME + " VARCHAR(30) NOT NULL, " +
+                USER_COLUMNS_FIRST_NAME + " VARCHAR(20) NOT NULL);"
+        );
 
-        db.execSQL("INSERT INTO cards (card_id , cpr, card_type) VALUES(1, '170492-1802','Rejsekort');"
+
+        db.execSQL("INSERT INTO " + USER_TABLE_NAME + " VALUES ('" + userCpr + "','" + userLastName + "','" + userFirstName + "');"
         );
-        db.execSQL("INSERT INTO cards (card_id , cpr, card_type) VALUES(2, '170492-1802','Bank Card');"
-        );
-        db.execSQL("INSERT INTO cards (card_id , cpr, card_type) VALUES(3, '170492-1802','Drivers Licence');"
-        );
-        db.execSQL("INSERT INTO cards (card_id , cpr, card_type) VALUES(4, '170492-1802','Sundhedskort');"
-        );
-        db.execSQL("INSERT INTO cards (card_id , cpr, card_type) VALUES(5, '170492-1802','Ungdomskort');"
-        );
+
 //____________________________________________________________________________________//
 
 
-           Rejsekort rejsekort = new Rejsekort("1", "123456789", 123, db);
-           String rejsekortId = rejsekort.getRejsekortId();
-           String rejsekortCardnumber = rejsekort.getRejsekortCardnumber();
-           String rejsekortAmount = Integer.toString(rejsekort.getRejsekortAmount());
+        Rejsekort objRejsekort = new Rejsekort("", "Rejsekort", R.drawable.rejsekort_f, R.drawable.rejsekort_b, "", "123456789", 123);
+        String rejsekortCardType = objRejsekort.getType();
+        int rejsekortImageF = objRejsekort.getFrontPhoto();
+        int rejsekortImageB = objRejsekort.getBackPhoto();
+
+        BankCard objBankCard = new BankCard("", "Bank Card", R.drawable.bankcard_f, R.drawable.bankcard_b, "123456789", "123456", "1234", "24/07", "789", 400);
+        String bankCardType = objBankCard.getType();
+        int bankCardImageF = objBankCard.getFrontPhoto();
+        int bankCardImageB = objBankCard.getBackPhoto();
+
+        Card objDriversLicence = new DriversLicence("", "Drivers Licence", R.drawable.driverslicence_f, R.drawable.driverslicence_b, "787947984", "1992-04-12", "2010-04-12", "2070-04-12", "Rigspolitichefen", "", "B", "2010-04-12", "2070-04-12", "");
+        String driversLicenceType = objDriversLicence.getType();
+        int driversLiceneImageF = objDriversLicence.getFrontPhoto();
+        int driversLicenceImageB = objDriversLicence.getBackPhoto();
+
+        Card objSundhedskort = new Sundhedskort("", "Sundhedskort", R.drawable.sundhedskort_f, R.drawable.sundhedskort_b, "Aalborg", "9000", "Løkkegade", "12", "Nordjylland", "Aalborg Kommune", "Jesper", "Larsen", "Aalborg", "9000", "Haraldsvej", "17");
+        String sundhedskortType = objSundhedskort.getType();
+        int sundhedskortImageF = objSundhedskort.getFrontPhoto();
+        int sundhedskortImageB = objSundhedskort.getBackPhoto();
+
+        Card objUngdomskort = new Ungdomskort("", "Ungdomskort", R.drawable.ungdomskort_f, R.drawable.ungdomskort_b, "1234567", "Randers - Aalborg", "2016-09-09", "2017-09-09", "1992-04-12");
+        String ungdomskortType = objUngdomskort.getType();
+        int ungdomskortImageF = objUngdomskort.getFrontPhoto();
+        int ungdomskortImageB = objUngdomskort.getBackPhoto();
+
+
+        db.execSQL("CREATE TABLE " + CARD_TABLE_NAME + "(" +
+                CARD_COLUMN_CARD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                CARD_COLUMN_CPR + " VARCHAR(11) NOT NULL," +
+                CARD_COLUMN_CARD_TYPE + " VARCHAR(30), " +
+                CARD_COLUMN_FRONT_PHOTO + " INT, " +
+                CARD_COLUMN_BACK_PHOTO + " INT," +
+                "FOREIGN KEY (" + CARD_COLUMN_CPR + ") REFERENCES " + USER_TABLE_NAME + "(" + USER_COLUMN_CPR + ")" +
+                ");");
+
+        db.execSQL("INSERT INTO " + CARD_TABLE_NAME + " (" + CARD_COLUMN_CPR + "," + CARD_COLUMN_CARD_TYPE + "," + CARD_COLUMN_FRONT_PHOTO + "," + CARD_COLUMN_BACK_PHOTO + ")" +
+                " VALUES('" + userCpr + "','" + rejsekortCardType + "'," + rejsekortImageF + "," + rejsekortImageB + ")," +
+                "('" + userCpr + "','" + bankCardType + "'," + bankCardImageF + "," + bankCardImageB + ")," +
+                "('" + userCpr + "','" + driversLicenceType + "'," + driversLiceneImageF + "," + driversLicenceImageB + ")," +
+                "('" + userCpr + "','" + sundhedskortType + "'," + sundhedskortImageF + "," + sundhedskortImageB + ")," +
+                "('" + userCpr + "','" + ungdomskortType + "'," + ungdomskortImageF + "," + ungdomskortImageB + ");"
+        );
+
+
+//____________________________________________________________________________________//
+
+
+        String rejsekortCardNumber = objRejsekort.getCardNumber();
+        Cursor cardIdFkRK = db.rawQuery("select " + CARD_COLUMN_CARD_ID + " from " + CARD_TABLE_NAME + " where " + CARD_COLUMN_CARD_TYPE + " = '" + rejsekortCardType + "'", null);
+        cardIdFkRK.moveToFirst();
+        String rejsekortCardIdFk = cardIdFkRK.getString(0);
+        String rejsekortAmount = Integer.toString(objRejsekort.getAmount());
 
         db.execSQL(
-                "CREATE TABLE rejsekort \n" +
-                        "(\n" +
-                        "card_no VARCHAR(30) NOT NULL PRIMARY KEY, \n" +
-                        "card_id INT NOT NULL, \n" +
-                        "amount INT NOT NULL,\n" +
-                        "FOREIGN KEY (card_id) REFERENCES cards (card_id)\n" +
-                        ")\n" +
-                        ";\n"
+                "CREATE TABLE " + RK_TABLE_NAME + "(" +
+                        RK_COLUMN_CARD_NO + " VARCHAR(30) NOT NULL PRIMARY KEY, " +
+                        CARD_COLUMN_CARD_ID + " INT NOT NULL, " +
+                        RK_COLUMN_AMOUNT + " INT NOT NULL," +
+                        "FOREIGN KEY (" + CARD_COLUMN_CARD_ID + ") REFERENCES " + CARD_TABLE_NAME + " (" + CARD_COLUMN_CARD_ID + ")" +
+                        ");"
         );
 
-        db.execSQL("INSERT INTO rejsekort (card_no , card_id, amount) VALUES(" + rejsekortCardnumber + "," + rejsekortId + "," + rejsekortAmount + ");"
+        db.execSQL("INSERT INTO " + RK_TABLE_NAME + " VALUES(" + rejsekortCardNumber + "," + rejsekortCardIdFk + "," + rejsekortAmount + ");"
         );
 //_____________________________________________________________________________________//
+
+        /**String bankcardCardNumber = objBankCard.getbCCardNumber();
+        Cursor cardIdFkBC = db.rawQuery("select " + CARD_COLUMN_CARD_ID + " from " + CARD_TABLE_NAME + " where " + CARD_COLUMN_CARD_TYPE + " = '" + bankCardType + "'", null);
+        cardIdFkBC.moveToFirst();
+        String bankcardCardIdFk = cardIdFkBC.getString(0);
+        String bankcardAmount = Integer.toString(objBankCard.getbCAmount());
+        String bankcardAccountNumber=objBankCard.getbCAccountNumber();
+        String bankcardRegNumber=objBankCard.getbCRegNumber();
+        String bankcardExpirationDate=objBankCard.getbCExpirationDate();
+        String bankcardSecurityNumber=objBankCard.getbCSecurityNumber();
+
+        db.execSQL(
+                "CREATE TABLE " + BC_TABLE_NAME + "(" +
+                        RK_COLUMN_CARD_NO + " VARCHAR(30) NOT NULL PRIMARY KEY, " +
+                        CARD_COLUMN_CARD_ID + " INT NOT NULL, " +
+                        BC_COLUMN_ACCOUNT_NO + "VARCHAR(30) NOT NULL," +
+                        BC_COLUMN_REG_NO + "INT NOT NULL," +
+                        BC_COLUMN_EXPIRATION_DATE + "DATE NOT NULL," +
+                        BC_COLUMN_SECURITY_NO + "VARCHAR(4) NOT NULL," +
+                        RK_COLUMN_AMOUNT + " INT NOT NULL," +
+                        "FOREIGN KEY (" + CARD_COLUMN_CARD_ID + ") REFERENCES " + CARD_TABLE_NAME + " (" + CARD_COLUMN_CARD_ID + ")" +
+                        ");"
+        );
+
+        db.execSQL("INSERT INTO " + BC_TABLE_NAME + " VALUES('" + bankcardCardNumber + "'," + bankcardCardIdFk + ",'" + bankcardAccountNumber + "'," + bankcardRegNumber + ",'" + bankcardExpirationDate + "','" + bankcardSecurityNumber + "'," + bankcardAmount + ");"
+        );*/
+//_____________________________________________________________________________________//
+
+
 
         BankCard bankCardObj = new BankCard();
         db.execSQL("CREATE TABLE bank_card \n" +
@@ -167,13 +243,28 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO ungdomskort VALUES(123456789, 5, 'Randers - Aalborg', '2012-03-04', '2013-03-04', '1992-04-12' )");
 
+        
+
     }
 
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS rejsekort;"); //+ PERSON_TABLE_NAME);
-        //onCreate(db);
+        @Override
+        public void onUpgrade (SQLiteDatabase db,int oldVersion, int newVersion){
+            //db.execSQL("DROP TABLE IF EXISTS rejsekort;"); //+ PERSON_TABLE_NAME);
+            //onCreate(db);
+        }
+
+        public void insertCard (String cardNameInput, int blueOrgreen){
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+
+            contentValues.put(CARD_COLUMN_CPR, "'"+ userCpr +"'" );
+            contentValues.put(CARD_COLUMN_CARD_TYPE, "'"+ cardNameInput +"'");
+            contentValues.put(CARD_COLUMN_FRONT_PHOTO, blueOrgreen);
+            contentValues.put(CARD_COLUMN_BACK_PHOTO, blueOrgreen);
+
+            db.insert(CARD_TABLE_NAME, null, contentValues);
+        }
     }
 
-}
+

@@ -15,6 +15,8 @@ public class BankCard extends Card {
     public String bCRegNumber;
     public String bCExpirationDate;
     public String bCSecurityNumber;
+    int bankCardImageF;
+    int bankCardImageB;
     public int bCAmount;
     SQLiteDatabase db;
 
@@ -22,14 +24,17 @@ public class BankCard extends Card {
 
     }
 
-    public BankCard(String cardID, int cardCprNumber, String type, String bCCardNumber, String bCAccountNumber, String bCRegNumber, String bCExpirationDate, String bCSecurityNumber, int bCAmount) {
-        super(cardID, cardCprNumber, type);
+
+    public BankCard(String cardID, String type, int frontPhoto, int backPhoto, String bCCardNumber, String bCAccountNumber, String bCRegNumber, String bCExpirationDate, String bCSecurityNumber, int bCAmount) {
+        super(cardID, type, frontPhoto, backPhoto);
         this.bCCardNumber = bCCardNumber;
         this.bCAccountNumber = bCAccountNumber;
         this.bCRegNumber = bCRegNumber;
         this.bCExpirationDate = bCExpirationDate;
         this.bCSecurityNumber = bCSecurityNumber;
         this.bCAmount = bCAmount;
+        this.bankCardImageF = frontPhoto;
+        this.bankCardImageB = backPhoto;
     }
 
     //Swipe Function
@@ -120,5 +125,13 @@ public class BankCard extends Card {
 
     public int getbCAmount() {
         return bCAmount;
+    }
+
+    public int getBankCardImageF() {
+        return bankCardImageF;
+    }
+
+    public int getBankCardImageB() {
+        return bankCardImageB;
     }
 }

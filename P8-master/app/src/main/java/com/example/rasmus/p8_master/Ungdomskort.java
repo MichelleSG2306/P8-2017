@@ -21,7 +21,8 @@ public class Ungdomskort extends Card {
 
     }
 
-    public Ungdomskort(String uKCardNumber, String uKtravelZone, String uKIssuedDate, String uKExpirationDate, String uKDateOfBirth) {
+    public Ungdomskort(String cardID, String type, int frontPhoto, int backPhoto, String uKCardNumber, String uKtravelZone, String uKIssuedDate, String uKExpirationDate, String uKDateOfBirth) {
+        super(cardID, type, frontPhoto, backPhoto);
         this.uKCardNumber = uKCardNumber;
         this.uKtravelZone = uKtravelZone;
         this.uKIssuedDate = uKIssuedDate;

@@ -5,39 +5,27 @@ package com.example.rasmus.p8_master;
 
 
 
-import android.Manifest;
-
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
 import android.view.Menu;
 import android.view.MenuItem;
-
-import android.util.Log;
-import android.util.Pair;
-
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
 
 //import org.apache.http.NameValuePair;
 //import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
+    SQLiteDatabase db;
+    private DBHelper databaseHandler;
 
 
 
@@ -45,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
                                   R.drawable.bankcard_f, R.drawable.ungdomskort_f};*/
 
     ArrayList<Integer> images=new ArrayList<Integer>();
+    /**/
+    ArrayList<String> titles=new ArrayList<String>();
+    /**/
     int clickCounter=0;
 
     @Override
@@ -55,9 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         lv=(ListView) findViewById(R.id.listOfCards);
-        lv.setAdapter(new CustomAdapter(this, images));
+        lv.setAdapter(new CustomAdapter(this, images, /**/titles/**/));
 
-        this.addStateItem();
+        //this.addStateItem();
+        this.addImagesToListview();
+        /**/
+        this.addTitlesToListview();
+        /**/
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -96,21 +91,43 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addStateItem (){
-        images.add(R.drawable.rejsekort_f);
-        images.add(R.drawable.driverslicence_f);
-        images.add(R.drawable.sundhedskort_f);
-        images.add(R.drawable.bankcard_f);
-        images.add(R.drawable.ungdomskort_f);
+    public void updateListView(){
+        addImagesToListview();
+        /**/
+        addTitlesToListview();
+        /**/
+        lv.invalidateViews();
+
     }
 
-    public void addItem (NewCard obj){
-        images.add(R.drawable.paint_bankcard);
-        //TextView textView = (TextView) findViewById(R.id.textview);
-        //String barcode = obj.getBarcode();
-        //textView.setText(barcode);
-        lv.invalidateViews();
+    public void addImagesToListview() {
+        DBHelper dbHelper = new DBHelper(MainActivity.this);
+        db = dbHelper.getReadableDatabase();
+        Cursor getImages = db.rawQuery("Select front_photo from cards", null);
+        getImages.moveToFirst();
+        while(!getImages.isAfterLast()) {
+            //String image = getImages.getString(0);
+            //int image2 = Integer.parseInt(image);
+            int image2 = getImages.getInt(0);
+            images.add(image2);
+            getImages.moveToNext();
+            }
+
     }
+    /**/
+    public void addTitlesToListview() {
+        DBHelper dbHelper=new DBHelper(MainActivity.this);
+        db=dbHelper.getReadableDatabase();
+        Cursor getTitles=db.rawQuery("Select card_type from cards", null);
+        getTitles.moveToFirst();
+        while(!getTitles.isAfterLast()){
+            String title2=getTitles.getString(0);
+            titles.add(title2);
+            getTitles.moveToNext();
+        }
+    }
+    /**/
+
 
 }
 
