@@ -6,13 +6,13 @@ package com.example.rasmus.p8_master;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,13 +20,19 @@ public class CustomAdapter extends BaseAdapter{
     ArrayList<Integer> result;
     Context context;
     ArrayList<Integer> imageId;
+    /**/
+    ArrayList<String> title;
+    /**/
     private static LayoutInflater inflater=null;
-    public CustomAdapter(MainActivity mainActivity, ArrayList<Integer> prgmImages) {
+    public CustomAdapter(MainActivity mainActivity, ArrayList<Integer> prgmImages, /**/ArrayList<String> prgmTitle/**/) {
         // TODO Auto-generated constructor stub
         //result=prgmNameList;
         result = prgmImages;
         context=mainActivity;
         imageId=prgmImages;
+        /**/
+        title=prgmTitle;
+        /**/
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -53,6 +59,9 @@ public class CustomAdapter extends BaseAdapter{
     {
 
         ImageView img;
+        /**/
+        TextView txt;
+        /**/
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -62,6 +71,10 @@ public class CustomAdapter extends BaseAdapter{
         rowView = inflater.inflate(R.layout.activity_list_img, null);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView);
         holder.img.setImageResource(imageId.get(position));
+        /**/
+        holder.txt=(TextView) rowView.findViewById(R.id.textitem);
+        holder.txt.setText(title.get(position));
+        /**/
         rowView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
