@@ -4,35 +4,83 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:layout_marginTop="60dp"
+        android:text="Type in name of card and add barcode"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        />
+
     <EditText
         android:id="@+id/nameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="Enter card name"
         android:inputType="textPersonName"
-        android:hint="Name of new card" />
-
-    <Button
-        android:text="Scan barcode"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/scanner"
-        android:textStyle="bold"
-        android:onClick="scanBarcode"
-        android:layout_below="@+id/nameInput"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/showBarcode"
+        android:id="@+id/missingInputName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/scanner"
+        android:layout_below="@+id/nameInput"
+        android:layout_alignLeft="@+id/nameInput"
+        android:text="Enter card name!"
+        android:textColor="#ff0000"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:id="@+id/barcodeLayout"
+        android:layout_below="@+id/missingInputName"
+        android:layout_alignLeft="@+id/nameInput"
+        >
+
+    <EditText
+        android:id="@+id/barcodeInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="text|number"
+        android:hint="Enter or scan barcode"
+        android:layout_below="@+id/nameInput"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
-        android:text="TextView" />
+        android:layout_weight="0.1"/>
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/scanner"
+        android:onClick="scanBarcode"
+        android:layout_toRightOf="@+id/barcodeInput"
+        android:layout_alignRight="@+id/barcodeInput"
+        android:background="@drawable/barcode"
+        android:layout_weight="50"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/missingBarcodeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/barcodeLayout"
+        android:layout_alignLeft="@+id/nameInput"
+        android:text="Enter name and add barcode!"
+        android:visibility="invisible"
+        android:textColor="#ff0000"/>
+
 
     <Button
         android:id="@+id/accept"
@@ -43,29 +91,6 @@
         android:layout_marginBottom="14dp"
         android:text="Save card"
         android:onClick="saveCard"/>
-
-    <ToggleButton
-        android:id="@+id/green"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/accept"
-        android:layout_marginBottom="5dp"
-        android:layout_centerHorizontal="true"
-        android:background="#00ff00"
-        android:textOff="Choose color"
-        android:textOn="Green"
-        />
-
-    <ToggleButton
-        android:id="@+id/blue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/green"
-        android:layout_centerHorizontal="true"
-        android:background="#0000ff"
-        android:textOff="Choose color"
-        android:textOn="Blue"
-        />
 
 
 </RelativeLayout>

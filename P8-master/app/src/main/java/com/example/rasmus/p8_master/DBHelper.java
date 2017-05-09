@@ -32,6 +32,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String RK_COLUMN_CARD_NO = "card_no";
     public static final String RK_COLUMN_AMOUNT = "amount";
 
+    public static final String OTHER_TABLE_NAME = "othercards";
+    public static final String OTHER_COLUMN_NAME = "name";
+    public static final String OTHER_COLUMN_BARCODE = "barcode";
+
 
     //Constructor
     public DBHelper(Context context) {
@@ -103,6 +107,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 "('" + userCpr + "','" + driversLicenceType + "'," + driversLiceneImageF + "," + driversLicenceImageB + ")," +
                 "('" + userCpr + "','" + sundhedskortType + "'," + sundhedskortImageF + "," + sundhedskortImageB + ")," +
                 "('" + userCpr + "','" + ungdomskortType + "'," + ungdomskortImageF + "," + ungdomskortImageB + ");"
+        );
+
+
+//____________________________________________________________________________________//
+
+        db.execSQL("CREATE TABLE " + OTHER_TABLE_NAME + "(" +
+                 CARD_COLUMN_CARD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                 OTHER_COLUMN_NAME + " VARCHAR(30)," +
+                 OTHER_COLUMN_BARCODE + " VARCHAR (30)," +
+                 CARD_COLUMN_FRONT_PHOTO + " INT, " +
+                 CARD_COLUMN_BACK_PHOTO + " INT);"
         );
 
 
@@ -216,23 +231,29 @@ public class DBHelper extends SQLiteOpenHelper {
             //onCreate(db);
         }
 
-        public void insertCard (String cardNameInput, int blueOrgreen){
+        public void insertCard (String cardNameInput, int blueOrgreen, String barcode){
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
-
+            /*
             contentValues.put(CARD_COLUMN_CPR, "'"+ userCpr +"'" );
             contentValues.put(CARD_COLUMN_CARD_TYPE, "'"+ cardNameInput +"'");
             contentValues.put(CARD_COLUMN_FRONT_PHOTO, blueOrgreen);
             contentValues.put(CARD_COLUMN_BACK_PHOTO, blueOrgreen);
 
-            db.insert(CARD_TABLE_NAME, null, contentValues);
+            db.insert(CARD_TABLE_NAME, null, contentValues); */
+
+            contentValues.put(OTHER_COLUMN_NAME, "'" + cardNameInput + "'" );
+            contentValues.put(OTHER_COLUMN_BARCODE, "'" + barcode + "'" );
+            contentValues.put(CARD_COLUMN_FRONT_PHOTO, blueOrgreen);
+            contentValues.put(CARD_COLUMN_BACK_PHOTO, blueOrgreen);
+            db.insert(OTHER_TABLE_NAME, null, contentValues);
         }
 
     public void deleteCard(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("delete from "+CARD_TABLE_NAME+" where " + CARD_COLUMN_CARD_ID + " = "+id);
-        MainActivity main = new MainActivity();
-        main.updateAfterDelete();
+        db.execSQL("delete from "+OTHER_TABLE_NAME+" where " + CARD_COLUMN_CARD_ID + " = "+id);
+        //MainActivity main = new MainActivity();
+        //main.updateAfterDelete();
     }
     }
 
