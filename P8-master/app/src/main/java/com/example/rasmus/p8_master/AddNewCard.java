@@ -3,16 +3,23 @@ package com.example.rasmus.p8_master;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
+
+import static java.security.AccessController.getContext;
 
 public class AddNewCard extends AppCompatActivity {
 
@@ -21,6 +28,7 @@ public class AddNewCard extends AppCompatActivity {
     public boolean statusGreen = false;
     public boolean statusBlue = false;
     int blueOrGreenCard;
+    int counter2 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +91,8 @@ public class AddNewCard extends AppCompatActivity {
                     Barcode barcode = data.getParcelableExtra("barcode");
                     scannedBarcode = barcode.rawValue;
 
-                    TextView showBarcode = (TextView) findViewById(R.id.showBarcode);
-                    showBarcode.setText(scannedBarcode);
+                    EditText showBarcode = (EditText) findViewById(R.id.barcodeInput);
+                    showBarcode.setText(scannedBarcode, TextView.BufferType.EDITABLE);
 
                 }
             }
@@ -100,21 +108,45 @@ public class AddNewCard extends AppCompatActivity {
         EditText nameInput = (EditText)findViewById(R.id.nameInput);
         String nameOfCardInput = nameInput.getText().toString();
 
-        /**if(statusBlue = true){
-            blueOrGreenCard = R.drawable.paint_bankcard;
+        EditText barcodeInput = (EditText) findViewById(R.id.barcodeInput);
+        String barcode = barcodeInput.getText().toString();
+
+        if(TextUtils.isEmpty(nameOfCardInput) || TextUtils.isEmpty(barcode))
+        {
+
+            //TextView nameMissing = (TextView) findViewById(R.id.missingInputName);
+            //nameMissing.setVisibility(View.VISIBLE);
+
+            TextView infoMissing = (TextView) findViewById(R.id.missingBarcodeName);
+            infoMissing.setVisibility(View.VISIBLE);
+
         }
 
-        if (statusGreen = true) {
-            blueOrGreenCard = R.drawable.paint_rejsekort;
-        }*/
+        else {
 
-        blueOrGreenCard = R.drawable.paint_rejsekort;
+            blueOrGreenCard = R.drawable.othercardb;
 
-        DBHelper dbHelper = new DBHelper(AddNewCard.this);
-        dbHelper.insertCard(nameOfCardInput, blueOrGreenCard);
+            DBHelper dbHelper = new DBHelper(AddNewCard.this);
+            dbHelper.insertCard(nameOfCardInput, blueOrGreenCard, barcode);
+            Toast.makeText(AddNewCard.this, "Card added", Toast.LENGTH_SHORT).show();
 
-        MainActivity main = new MainActivity();
-        main.updateListView();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+
+            //MainActivity main = new MainActivity();
+            //main.updateListView();
+
+        }
+
+
+
+        }
+
+
+
+
+
+
     }
 
-}
+

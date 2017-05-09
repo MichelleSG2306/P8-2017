@@ -48,7 +48,22 @@ public class MainActivity extends AppCompatActivity {
         lv=(ListView) findViewById(R.id.listOfCards);
         lv.setAdapter(new CustomAdapter(this, images, /**/titles/**/));
 
+        int counter = getIntent().getIntExtra("COUNTER", 0);
+        int counter2 = getIntent().getIntExtra("COUNTER2", 0);
+
+        /*if(counter == 1){
+            Toast.makeText(MainActivity.this, "Card added!", Toast.LENGTH_SHORT).show();
+
+        }
+
+        if (counter2 == 2){
+            Toast.makeText(MainActivity.this, "Card deleted!", Toast.LENGTH_SHORT).show();
+        } */
+
         //this.addStateItem();
+ 
+        this.updateListView();
+
         this.addImagesToListview();
         /**/
         this.addTitlesToListview();
@@ -63,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
+
+
 
     }
 
@@ -100,18 +118,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void updateAfterDelete(){
+        lv.invalidateViews();
+    }
+
     public void addImagesToListview() {
         DBHelper dbHelper = new DBHelper(MainActivity.this);
         db = dbHelper.getReadableDatabase();
         Cursor getImages = db.rawQuery("Select front_photo from cards", null);
         getImages.moveToFirst();
-        while(!getImages.isAfterLast()) {
-            //String image = getImages.getString(0);
-            //int image2 = Integer.parseInt(image);
+        while (!getImages.isAfterLast()) {
             int image2 = getImages.getInt(0);
             images.add(image2);
             getImages.moveToNext();
-            }
+        }
+
+        Cursor getImages2 = db.rawQuery("Select front_photo from othercards", null);
+        getImages2.moveToFirst();
+        while (!getImages2.isAfterLast()) {
+            int image2 = getImages2.getInt(0);
+            images.add(image2);
+            getImages2.moveToNext();
+
+    }
 
     }
     /**/

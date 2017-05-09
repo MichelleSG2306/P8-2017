@@ -21,6 +21,18 @@
         app:tabBackground="@drawable/tab_selector"
         app:tabGravity="center"
         app:tabIndicatorHeight="0dp"/>
+
+    <TextView
+        android:id="@+id/nameOfCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Card name" />
+
+    <TextView
+        android:id="@+id/barcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Barcode" />
     <!--dots-->
 
     <!--Swipe Function-->
