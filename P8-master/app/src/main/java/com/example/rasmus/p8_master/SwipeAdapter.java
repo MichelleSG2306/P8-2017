@@ -8,10 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-/**
- * Created by babis on 4/11/2017.
- */
-
 public class SwipeAdapter extends PagerAdapter {
 
 

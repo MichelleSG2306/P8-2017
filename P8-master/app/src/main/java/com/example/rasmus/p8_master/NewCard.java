@@ -17,7 +17,6 @@ public class NewCard extends Card {
 
     public String barcode;
     public String nameOfCard;
-    //String s = getIntent().getStringExtra("EXTRA_POSITION_ID");
     SQLiteDatabase db;
 
     public NewCard(){
@@ -79,11 +78,6 @@ public class NewCard extends Card {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        //Intent intent = new Intent(this, AddNewCard.class);
-        //startActivity(intent);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Do you want to delete?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -94,9 +88,7 @@ public class NewCard extends Card {
                         Toast.makeText(NewCard.this, "Card deleted", Toast.LENGTH_SHORT).show();
                         DBHelper dbHelper = new DBHelper(NewCard.this);
                         dbHelper.deleteCard(id2);
-                        int counter = 2;
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        //intent.putExtra("COUNTER2", counter);
                         startActivity(intent);
                     }
                 })
@@ -108,22 +100,6 @@ public class NewCard extends Card {
         AlertDialog d = builder.create();
         d.setTitle("Delete Card?");
         d.show();
-
-
-
-       // int id2 = getIntent().getIntExtra("EXTRA_POSITION_ID", 0);
-       // int minus = 4;
-       // id2 = id2 - minus ;
-
-        //if (id2 > 4) {
-            //int id = Integer.valueOf(s);
-            //DBHelper dbHelper = new DBHelper(NewCard.this);
-            //dbHelper.deleteCard(id2);
-            //The key argument here must match that used in the other activity
-        //}
-
-
-
 
         int id = item.getItemId();
 

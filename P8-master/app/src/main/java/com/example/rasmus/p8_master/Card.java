@@ -8,7 +8,6 @@ public abstract class Card extends AppCompatActivity {
 
     //Variables to use on each object
     public String cardID;
-    //public int cardCprNumber;
     public String type;
     public int frontPhoto;
     public int backPhoto;
@@ -19,7 +18,6 @@ public abstract class Card extends AppCompatActivity {
 
     public Card(String cardID, String type, int frontPhoto, int backPhoto) {
         this.cardID = cardID;
-        //this.cardCprNumber = cardCprNumber;
         this.type = type;
         this.frontPhoto = frontPhoto;
         this.backPhoto = backPhoto;
@@ -31,10 +29,6 @@ public abstract class Card extends AppCompatActivity {
         this.cardID = cardID;
     }
 
-    /*public void setCardCprNumber(int cardCprNumber) {
-        this.cardCprNumber = cardCprNumber;
-    } */
-
     public void setType(String type) {
         this.type = type;
     }
@@ -42,10 +36,6 @@ public abstract class Card extends AppCompatActivity {
     public String getCardID() {
         return cardID;
     }
-
-    /*public int getCardCprNumber() {
-        return cardCprNumber;
-    } */
 
     public String getType() {return type;}
 

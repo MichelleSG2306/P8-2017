@@ -26,10 +26,7 @@ import java.io.IOException;
 
 public class ScanBarcodeActivity extends Activity {
     SurfaceView cameraPreview;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+
     private GoogleApiClient client;
 
     @Override
@@ -39,8 +36,7 @@ public class ScanBarcodeActivity extends Activity {
 
         cameraPreview = (SurfaceView) findViewById(R.id.camera_preview);
         createCameraSource();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -104,10 +100,6 @@ public class ScanBarcodeActivity extends Activity {
         });
     }
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
     public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
                 .setName("ScanBarcode Page") // TODO: Define a title for the content shown.
@@ -123,9 +115,6 @@ public class ScanBarcodeActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
@@ -134,8 +123,6 @@ public class ScanBarcodeActivity extends Activity {
     public void onStop() {
         super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }

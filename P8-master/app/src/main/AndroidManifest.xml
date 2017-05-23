@@ -25,9 +25,9 @@
         <activity android:name=".ScanBarcodeActivity" />
         <activity android:name=".AddNewCard" />
         <activity android:name=".NewCard" />
-        <activity android:name=".Ungdomskort" />
-        <activity android:name=".ScanBarcodeActivity"></activity>
-        <activity android:name=".OtherCard"></activity>
+        <activity android:name=".Ungdomskort" >
+        </activity>
+
     </application>
 
 </manifest>

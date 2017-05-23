@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class BankCard extends Card {
@@ -25,7 +24,9 @@ public class BankCard extends Card {
     }
 
 
-    public BankCard(String cardID, String type, int frontPhoto, int backPhoto, String bCCardNumber, String bCAccountNumber, String bCRegNumber, String bCExpirationDate, String bCSecurityNumber, int bCAmount) {
+    public BankCard(String cardID, String type, int frontPhoto, int backPhoto, String bCCardNumber,
+                    String bCAccountNumber, String bCRegNumber, String bCExpirationDate,
+                    String bCSecurityNumber, int bCAmount) {
         super(cardID, type, frontPhoto, backPhoto);
         this.bCCardNumber = bCCardNumber;
         this.bCAccountNumber = bCAccountNumber;
@@ -79,9 +80,9 @@ public class BankCard extends Card {
 
         Cursor accountNumber = db.rawQuery("Select account_no from bank_card", null);
         accountNumber.moveToFirst();
-        String amount2 = accountNumber.getString(0);
-        TextView textAmount = (TextView) findViewById(R.id.accountNumber);
-        textAmount.append(" " + amount2);
+        String accountNumber2 = accountNumber.getString(0);
+        TextView textAccountNumber = (TextView) findViewById(R.id.accountNumber);
+        textAccountNumber.append(" " + accountNumber2);
 
         Cursor regNumber = db.rawQuery("Select reg_no from bank_card", null);
         regNumber.moveToFirst();
@@ -100,6 +101,12 @@ public class BankCard extends Card {
         String secNumber2 = secNumber.getString(0);
         TextView textSecNumber = (TextView) findViewById(R.id.secNumber);
         textSecNumber.append(" " + secNumber2);
+
+        Cursor amount = db.rawQuery("Select amount from bank_card", null);
+        amount.moveToFirst();
+        String amount2 = amount.getString(0);
+        TextView textAmount = (TextView) findViewById(R.id.amount);
+        textAmount.append(" " + amount2 + ",-");
 
     }
 

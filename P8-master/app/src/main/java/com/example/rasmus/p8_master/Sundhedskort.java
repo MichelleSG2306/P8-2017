@@ -6,12 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class Sundhedskort extends Card {
 
     //Variables to use on each object
+    public String sUID;
     public String sUCity;
     public String sUZip;
     public String sUStreetName;
@@ -22,9 +22,21 @@ public class Sundhedskort extends Card {
     public String sUDoctorLastName;
     public String sUDocCity;
     public String sUDocZip;
+    public String sUDocPhone;
+    public String sUValidDate;
 
-    public Sundhedskort(String cardID, String type, int frontPhoto, int backPhoto, String sUCity, String sUZip, String sUStreetName, String sUStreetNumber, String sURegion, String sUMunicipality, String sUDoctorFirstName, String sUDoctorLastName, String sUDocCity, String sUDocZip, String sUDocStreetName, String sUDocStreetNumber) {
+    public String sUDocStreetName;
+    public String sUDocStreetNumber;
+    public int sundhedskortImageF;
+    public int sundhedskortImageB;
+    SQLiteDatabase db;
+
+    public Sundhedskort(){
+    }
+
+    public Sundhedskort(String cardID, String type, int frontPhoto, int backPhoto, String sUID, String sUCity, String sUZip, String sUStreetName, String sUStreetNumber, String sURegion, String sUMunicipality, String sUDoctorFirstName, String sUDoctorLastName, String sUDocCity, String sUDocZip, String sUDocStreetName, String sUDocStreetNumber, String sUDocPhone, String sUValidDate) {
         super(cardID, type, frontPhoto, backPhoto);
+        this.sUID = sUID;
         this.sUCity = sUCity;
         this.sUZip = sUZip;
         this.sUStreetName = sUStreetName;
@@ -37,21 +49,11 @@ public class Sundhedskort extends Card {
         this.sUDocZip = sUDocZip;
         this.sUDocStreetName = sUDocStreetName;
         this.sUDocStreetNumber = sUDocStreetNumber;
+        this.sUDocPhone = sUDocPhone;
+        this.sUValidDate = sUValidDate;
         this.sundhedskortImageF = frontPhoto;
         this.sundhedskortImageB = backPhoto;
     }
-
-    public String sUDocStreetName;
-    public String sUDocStreetNumber;
-    public int sundhedskortImageF;
-    public int sundhedskortImageB;
-    SQLiteDatabase db;
-
-    public Sundhedskort(){
-
-    }
-
-
 
     //Swipe Function
     SwipeAdapter swipeAdapter;
@@ -140,9 +142,10 @@ public class Sundhedskort extends Card {
         String doctorPhone2 = doctorPhone.getString(0);
         TextView textDoctorPhone = (TextView) findViewById(R.id.textDoctorsPhone);
         textDoctorPhone.append(" " + doctorPhone2);
+    }
 
-
-
+    public String getsUID() {
+        return sUID;
     }
 
     public String getsUCity() {
@@ -191,6 +194,14 @@ public class Sundhedskort extends Card {
 
     public String getsUDocStreetNumber() {
         return sUDocStreetNumber;
+    }
+
+    public String getsUDocPhone() {
+        return sUDocPhone;
+    }
+
+    public String getsUValidDate() {
+        return sUValidDate;
     }
 
     public int getSundhedskortImageF() {

@@ -2,10 +2,9 @@ package com.example.rasmus.p8_master;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 
 public class Ungdomskort extends Card {
@@ -62,19 +61,19 @@ public class Ungdomskort extends Card {
         TextView text = (TextView) findViewById(R.id.textName);
         text.append(" " + fullName);
 
-        Cursor travelZone = db.rawQuery("Select travelzone from ungdomskort",null);
-        travelZone.moveToFirst();
-        String travelZone2 = travelZone.getString(0);
-        TextView textTravelZone = (TextView) findViewById(R.id.textTravelZones);
-        textTravelZone.append(" " + travelZone2);
+        //Cursor travelZone = db.rawQuery("Select travelzone from ungdomskort",null);
+        //travelZone.moveToFirst();
+        //String travelZone2 = travelZone.getString(0);
+        //TextView textTravelZone = (TextView) findViewById(R.id.textTravelZones);
+        //textTravelZone.append(" " + travelZone2);
 
-        Cursor validationPeriod = db.rawQuery("Select issue_date, expiration_date from ungdomskort", null);
-        validationPeriod.moveToFirst();
-        String issuePeriod = validationPeriod.getString(0);
-        String expirationPeriod = validationPeriod.getString(1);
-        String validationPeriod2 = issuePeriod + " - " + expirationPeriod;
-        TextView textValidationPeriod = (TextView) findViewById(R.id.textValidationPeriod);
-        textValidationPeriod.append(" " + validationPeriod2);
+        //Cursor validationPeriod = db.rawQuery("Select issue_date, expiration_date from ungdomskort", null);
+        //validationPeriod.moveToFirst();
+        //String issuePeriod = validationPeriod.getString(0);
+        //String expirationPeriod = validationPeriod.getString(1);
+        //String validationPeriod2 = issuePeriod + " - " + expirationPeriod;
+        //TextView textValidationPeriod = (TextView) findViewById(R.id.textValidationPeriod);
+        //textValidationPeriod.append(" " + validationPeriod2);
 
         Cursor dateOfBirth = db.rawQuery("Select date_of_birth from ungdomskort",null);
         dateOfBirth.moveToFirst();

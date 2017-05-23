@@ -2,16 +2,16 @@ package com.example.rasmus.p8_master;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 
 public class DriversLicence extends Card {
 
     public String dLCardNumber;
     public String dLDateOfBirth;
+    public String dLCountryOfBirth;
     public String dLissuedDate;
     public String dLExpirationDate;
     public String dLIssuedBy;
@@ -28,10 +28,11 @@ public class DriversLicence extends Card {
 
     }
 
-    public DriversLicence(String cardID, String type, int frontPhoto, int backPhoto, String dLCardNumber, String dLDateOfBirth, String dLissuedDate, String dLExpirationDate, String dLIssuedBy, String dLSignature, String dLCategory, String dLCategoryIssueDate, String dLCategoryExpirationDate, String dLlimitation) {
+    public DriversLicence(String cardID, String type, int frontPhoto, int backPhoto, String dLCardNumber, String dLDateOfBirth, String dLCountryOfBirth, String dLissuedDate, String dLExpirationDate, String dLIssuedBy, String dLSignature, String dLCategory, String dLCategoryIssueDate, String dLCategoryExpirationDate, String dLlimitation) {
         super(cardID, type, frontPhoto, backPhoto);
         this.dLCardNumber = dLCardNumber;
         this.dLDateOfBirth = dLDateOfBirth;
+        this.dLCountryOfBirth = dLCountryOfBirth;
         this.dLissuedDate = dLissuedDate;
         this.dLExpirationDate = dLExpirationDate;
         this.dLIssuedBy = dLIssuedBy;
@@ -43,24 +44,6 @@ public class DriversLicence extends Card {
         this.driversLiceneImageF = frontPhoto;
         this.driversLicenceImageB = backPhoto;
     }
-
-    /* public DriversLicence(String dLCardNumber, String dLDateOfBirth, int photoF, int photoB, String dLissuedDate, String dLExpirationDate, String dLIssuedBy, String dLSignature, String dLCategory, String dLCategoryIssueDate, String dLCategoryExpirationDate, String dLlimitation) {
-
-        this.dLCardNumber = dLCardNumber;
-        this.dLDateOfBirth = dLDateOfBirth;
-        this.dLissuedDate = dLissuedDate;
-        this.dLExpirationDate = dLExpirationDate;
-        this.dLIssuedBy = dLIssuedBy;
-        this.dLSignature = dLSignature;
-        this.dLCategory = dLCategory;
-        this.dLCategoryIssueDate = dLCategoryIssueDate;
-        this.dLCategoryExpirationDate = dLCategoryExpirationDate;
-        this.dLlimitation = dLlimitation;
-        this.driversLiceneImageF = photoF;
-        this.driversLicenceImageB = photoB;
-
-    } */
-
     //Swipe Function
     SwipeAdapter swipeAdapter;
     ViewPager viewPager;
@@ -141,10 +124,6 @@ public class DriversLicence extends Card {
         String issuedBy2 = issuedBy.getString(0);
         TextView textIssuedBy = (TextView) findViewById(R.id.textIssuedBy);
         textIssuedBy.append(" " + issuedBy2);
-
-
-
-
     }
 
     public String getdLCardNumber() {
@@ -153,6 +132,10 @@ public class DriversLicence extends Card {
 
     public String getdLDateOfBirth() {
         return dLDateOfBirth;
+    }
+
+    public String getdLCountryOfBirth() {
+        return dLCountryOfBirth;
     }
 
     public String getdLissuedDate() {

@@ -62,6 +62,12 @@
     android:layout_height="wrap_content"
     android:text="Security number:" />
 
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Amount:" />
+
 <TextView
     android:id="@+id/textView3"
     android:layout_width="match_parent"

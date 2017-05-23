@@ -3,10 +3,7 @@ package com.example.rasmus.p8_master;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,48 +16,16 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
-import static java.security.AccessController.getContext;
-
 public class AddNewCard extends AppCompatActivity {
 
     private String scannedBarcode;
-    private int counter = 5;
-    public boolean statusGreen = false;
-    public boolean statusBlue = false;
     int blueOrGreenCard;
-    int counter2 = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_card);
-
-        /**final ToggleButton green = (ToggleButton)findViewById(R.id.green);
-        final ToggleButton blue = (ToggleButton)findViewById(R.id.blue);
-        final boolean notChecked = false;*/
-
-        /**green.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                blue.setChecked(notChecked);
-                statusGreen = true;
-                statusBlue = false;
-
-            }
-        });
-
-        blue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                green.setChecked(notChecked);
-                statusBlue = true;
-                statusGreen = false;
-            }
-        });*/
-
-
     }
 
     public void scanBarcode(View v) {
@@ -114,9 +79,6 @@ public class AddNewCard extends AppCompatActivity {
         if(TextUtils.isEmpty(nameOfCardInput) || TextUtils.isEmpty(barcode))
         {
 
-            //TextView nameMissing = (TextView) findViewById(R.id.missingInputName);
-            //nameMissing.setVisibility(View.VISIBLE);
-
             TextView infoMissing = (TextView) findViewById(R.id.missingBarcodeName);
             infoMissing.setVisibility(View.VISIBLE);
 
@@ -132,21 +94,8 @@ public class AddNewCard extends AppCompatActivity {
 
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-
-            //MainActivity main = new MainActivity();
-            //main.updateListView();
-
         }
-
-
-
-        }
-
-
-
-
-
-
     }
+}
 
 

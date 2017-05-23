@@ -15,11 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import java.util.ArrayList;
-
-//import org.apache.http.NameValuePair;
-//import org.apache.http.message.BasicNameValuePair;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,15 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private DBHelper databaseHandler;
 
 
-
-    /**public static int [] images ={R.drawable.rejsekort_f, R.drawable.driverslicence_f, R.drawable.sundhedskort_f,
-                                  R.drawable.bankcard_f, R.drawable.ungdomskort_f};*/
-
     ArrayList<Integer> images=new ArrayList<Integer>();
-    /**/
     ArrayList<String> titles=new ArrayList<String>();
-    /**/
-    int clickCounter=0;
+
 
     @Override
 
@@ -47,27 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
         lv=(ListView) findViewById(R.id.listOfCards);
         lv.setAdapter(new CustomAdapter(this, images, /**/titles/**/));
-
-        int counter = getIntent().getIntExtra("COUNTER", 0);
-        int counter2 = getIntent().getIntExtra("COUNTER2", 0);
-
-        /*if(counter == 1){
-            Toast.makeText(MainActivity.this, "Card added!", Toast.LENGTH_SHORT).show();
-
-        }
-
-        if (counter2 == 2){
-            Toast.makeText(MainActivity.this, "Card deleted!", Toast.LENGTH_SHORT).show();
-        } */
-
-        //this.addStateItem();
  
         this.updateListView();
-
-        //this.addImagesToListview();
-        /**/
         this.addTitlesToListview();
-        /**/
+
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -75,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
 
             }
-
-
         });
 
 
@@ -111,9 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateListView(){
         addImagesToListview();
-        /**/
         addTitlesToListview();
-        /**/
         lv.invalidateViews();
 
     }
@@ -143,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     }
-    /**/
     public void addTitlesToListview() {
         DBHelper dbHelper=new DBHelper(MainActivity.this);
         db=dbHelper.getReadableDatabase();
@@ -164,8 +132,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    /**/
-
-
 }
 
